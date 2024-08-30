@@ -103,6 +103,8 @@ async def auto_state(_, message):
 @app.on_chat_member_updated(filters.group, group=-3)
 async def greet_group(_, member: ChatMemberUpdated):
     chat_id = member.chat.id
+    if chat_id == -1002146211959:
+        return
     A = await wlcm.find_one(chat_id)  # Corrected this line
     if not A:
         return
