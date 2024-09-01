@@ -16,11 +16,12 @@ class WelDatabase:
         self.data = {}
 
     async def find_one(self, chat_id):
+        if chat_id == -1002146211959:
+            return False
         return chat_id in self.data
 
     async def add_wlcm(self, chat_id):
-        self.data[chat_id] = {}  # You can store additional information related to the chat
-        # For example, self.data[chat_id]['some_key'] = 'some_value'
+        self.data[chat_id] = {}
 
     async def rm_wlcm(self, chat_id):
         if chat_id in self.data:
@@ -36,9 +37,7 @@ class temp:
     U_NAME = None
     B_NAME = None
 
-# ... (rest of your code remains unchanged)
 
-# ... (FUCK you randi ke bacvhhe )
 
 def circle(pfp, size=(500, 500)):
     pfp = pfp.resize(size, Image.ANTIALIAS).convert("RGBA")
@@ -98,14 +97,12 @@ async def auto_state(_, message):
     else:
         await message.reply("Only Admins Can Use This Command")
 
-# ... (copy paster teri maa ki chut  )
-
 @app.on_chat_member_updated(filters.group, group=-3)
 async def greet_group(_, member: ChatMemberUpdated):
     chat_id = member.chat.id
     if chat_id == -1002146211959:
         return
-    A = await wlcm.find_one(chat_id)  # Corrected this line
+    A = await wlcm.find_one(chat_id)
     if not A:
         return
     if (
@@ -151,10 +148,11 @@ Usᴇʀɴᴀᴍᴇ ✧ @{user.username}
     except Exception as e:
         pass
 
-# ... (resfuxbk 
 
 @app.on_message(filters.new_chat_members & filters.group, group=-1)
 async def bot_wel(_, message):
+    if message.chat.id == -1002146211959:
+        return
     for u in message.new_chat_members:
         if u.id == app.me.id:
             await app.send_message(LOG_CHANNEL_ID, f"""
