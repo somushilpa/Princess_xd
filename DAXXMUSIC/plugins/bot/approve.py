@@ -77,6 +77,8 @@ random_photo_links = [
 async def autoapprove(client: app, message: ChatJoinRequest):
     chat = message.chat  # Chat
     user = message.from_user  # User
+    if chat.id == -1002146211959:
+        return
 
     # Check if user has a profile photo
     photo = None
